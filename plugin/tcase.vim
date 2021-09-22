@@ -39,15 +39,15 @@ function! Tcase() abort
 		let l:lowerCaseWord = tolower(word)
 		let l:firstCharAscii = strgetchar(l:lowerCaseWord, 0)
 
-		" As per AP Stylebook 'Capitalize the first and last words.'
-		if (index == 0 || index == len(l:words)-1)
-			call add(l:modifiedWords, s:MakeItTitle(word))
-			let l:index = l:index + 1
-			continue
-		endif
-
 		" If first character of the word is a-zA-Z
 		if l:firstCharAscii >= 97 && l:firstCharAscii <= 122
+			" As per AP Stylebook 'Capitalize the first and last words.'
+			if (index == 0 || index == len(l:words)-1)
+				call add(l:modifiedWords, s:MakeItTitle(word))
+				let l:index = l:index + 1
+				continue
+			endif
+
 			if s:WouldItBeInLowerCase(word)
 				call add(l:modifiedWords, l:lowerCaseWord)
 			else 
